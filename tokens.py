@@ -1,7 +1,7 @@
 from Enum import Enum, auto 
 from datac classes import dataclass
 #class
-class TokenWrite(Enum):
+class TokenType(Enum):
   INT = auto()
   FLOAT = auto()
   INTR = auto()
@@ -31,6 +31,6 @@ class TokenWrite(Enum):
 #burger
 @dataclass
 class Token:
-  type: TokenWrite
+  type: TokenType
   line: int
   collum: int
