@@ -34,8 +34,10 @@ class Parser:
             return self.parse_switch()
         elif token.type == TokenType.IDENTIFIER:
             return self.parse_assignment()
+        elif token.type == Token.Type.TUER:
+            return self.parse_assignment()
         else:
-            return self.parse_expression()
+            return self.parse_tuer()
     def parse_declaration(self):
         var_type = self.current().type.name.lower()
         self.pos += 1
@@ -137,5 +139,15 @@ class Parser:
             expr = self.parse_expression()
             self.expect(TokenType.RPAREN)
             return expr
-        else:
-            raise SyntaxError(f"Unexpected token: {token}")
+        
+    def parse_tuer(self):
+        self.eat(TokenType.TUER)
+        self.expect(TokenType.LPAREN)
+        format_str = self.expect(TokenType.STRING).value
+        self.expect(TokenType.COMMA)
+        var_name = self.expect(TokenType.IDENTIFIER).value
+        self.expect(TokenType.RPAREN)
+        self.expect(TokenType.SEMICOLON)
+        return ('tuer', format_str, var_name)
+    else:
+        raise SyntaxError(f"Unexpected token: {token}")
