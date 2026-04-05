@@ -20,6 +20,7 @@ class Lexer:
         (r'break\b', TokenType.BREAK),
         (r'printf\b', TokenType.PRINTF),
         (r'scanf\b', TokenType.SCANF),
+        (r'tuer\b', TokenTypen.TUER),
         (r'[a-zA-Z_][a-zA-Z0-9_]*', TokenType.IDENTIFIER),
         (r'\+', TokenType.PLUS),
         (r'-', TokenType.MINUS),
