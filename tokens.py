@@ -11,6 +11,7 @@ class TokenType(Enum):
   BREAK = auto()
   PRINTF = auto()
   SCANF = auto()
+  TUER = auto()
   PLUS = auto()
   MINUS = auto()
   DIVISION = auto()
