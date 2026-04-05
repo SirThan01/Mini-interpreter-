@@ -1,5 +1,4 @@
 from ast_nodes import *
-#burger nnnfhjgs
 class Interpreter:
     def __init__(self):
         self.variables = {}
@@ -21,6 +20,8 @@ class Interpreter:
             return self.visit_scanf(node)
         elif isinstance(node, Switch):
             return self.visit_switch(node)
+        elif isinstance(node, tuple) and node[0] == 'tuer':  # Добавить вызов
+            return self.visit_tuer(node[1], node[2])
     def visit_program(self, node):
         for stmt in node.statements:
             self.interpret(stmt)
@@ -48,7 +49,6 @@ class Interpreter:
                 value = int(value)
             elif node.var_type == 'float':
                 value = float(value)
-            # intr stores result but keeps original type
         self.variables[node.name] = value
         if node.var_type:
             self.types[node.name] = node.var_type
@@ -81,20 +81,20 @@ class Interpreter:
                 for stmt in case.body:
                     self.interpret(stmt)
                 break
+        else:
+            if node.default:
+                for stmt in node.default:
+                    self.interpret(stmt)
+        return None
     def visit_tuer(self, format_str, var_name):
         old_val = self.variables[var_name]
         if isinstance(old_val, (int, float)):
             new_val = -old_val
         else:
-            new_val = old_val[::-1] if isinstance(old_val, str) else old_var
+            new_val = old_val[::-1] if isinstance(old_val, str) else old_val
         self.variables[var_name] = new_val
         if '%i' in format_str:
             print(format_str.replace('%i', str(int(new_val))))
         elif '%f' in format_str:
             print(format_str.replace('%f', str(float(new_val))))
-        return new_val                        
-        else:
-            if node.default:
-                for stmt in node.default:
-                    self.interpret(stmt) 
-        return None
+        return new_val
