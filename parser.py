@@ -1,7 +1,7 @@
 from tokens import TokenType
 from ast_nodes import *
 class Parser:
-    def __init__(self, tokens):
+    def__init__(self, tokens):
         self.tokens = tokens
         self.pos = 0
     def current(self):
