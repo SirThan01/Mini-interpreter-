@@ -1,4 +1,4 @@
-from tokens import TokenType
+from tokens import Token Type
 from ast_nodes import *
 class Parser:
     def __init__(self, tokens):
